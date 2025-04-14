@@ -1,6 +1,6 @@
 package com.example.order_online.dao;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.example.order_online.queryEntity.CategoryWithMenus;
 import com.example.order_online.domain.DashMenu;
 import org.apache.ibatis.annotations.*;
 
@@ -8,8 +8,22 @@ import java.util.List;
 
 @Mapper
 public interface DashMenuDao{
-    @Select("select * from dashmenu")
-    public List<DashMenu> getAllDashMenu();
+    @Select("SELECT \n"+
+            "c.categoryId AS categoryId,\n"+
+            "c.categoryName AS categoryName, \n"+
+            "c.description AS categoryDescription, \n"+
+            "m.menuId AS menuId, \n"+
+            "m.menuName AS menuName, \n"+
+            "m.price AS price, \n"+
+            "m.description AS menuDescription, \n"+
+            "m.imagePath AS imagePath\n"+
+            "FROM \n"+
+                    "DashType c \n"+
+            "LEFT JOIN \n"+
+            "dashmenu m ON c.categoryId = m.categoryId \n"+
+            "ORDER BY \n"+
+            "c.categoryId, m.categoryId;")
+    public List<CategoryWithMenus> getAllDashMenu();
     @Select("select * from dashmenu where categoryId = #{id}")
     public List<DashMenu> getDashMenuByType(int id);
 //    添加item

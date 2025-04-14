@@ -1,5 +1,6 @@
 package com.example.order_online.controller;
 
+import com.example.order_online.queryEntity.CategoryWithMenus;
 import com.example.order_online.domain.DashMenu;
 import com.example.order_online.service.DashMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,7 @@ public class DashMenuController {
     @Autowired
     private DashMenuService DashMenuService;
     @GetMapping
-    public List<DashMenu> getAllDashMenu(){
+    public List<CategoryWithMenus> getAllDashMenu(){
         return DashMenuService.getAllDashMenu();
     }
     @GetMapping("/{id}")

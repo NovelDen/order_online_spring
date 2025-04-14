@@ -1,6 +1,7 @@
 package com.example.order_online.service.impl;
 
 import com.example.order_online.dao.DashMenuDao;
+import com.example.order_online.queryEntity.CategoryWithMenus;
 import com.example.order_online.domain.DashMenu;
 import com.example.order_online.service.DashMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +13,7 @@ import java.util.List;
 public class DashMenuServiceImpl implements DashMenuService {
     @Autowired
     private DashMenuDao DashMenuDao;
-    public List<DashMenu> getAllDashMenu() {
+    public List<CategoryWithMenus> getAllDashMenu() {
         return DashMenuDao.getAllDashMenu();
     }
 

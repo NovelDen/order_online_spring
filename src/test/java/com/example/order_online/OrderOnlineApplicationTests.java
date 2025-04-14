@@ -3,6 +3,7 @@ package com.example.order_online;
 import com.example.order_online.dao.DashMenuDao;
 import com.example.order_online.dao.AdminDao;
 import com.example.order_online.domain.Admin;
+import com.example.order_online.queryEntity.CategoryWithMenus;
 import com.example.order_online.domain.DashMenu;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,7 +35,7 @@ class OrderOnlineApplicationTests {
     @Test
     void testgetAll() {
         // 从itemDao中获取所有数据
-        List<DashMenu> items = dashMenuDao.getAllDashMenu();
+        List<CategoryWithMenus> items = dashMenuDao.getAllDashMenu();
         // 打印获取到的数据
         System.out.println(items);
     }
