@@ -17,12 +17,9 @@ public interface DashMenuDao{
             "m.price AS price, \n"+
             "m.description AS menuDescription, \n"+
             "m.imagePath AS imagePath\n"+
-            "FROM \n"+
-                    "DashType c \n"+
-            "LEFT JOIN \n"+
-            "dashmenu m ON c.categoryId = m.categoryId \n"+
-            "ORDER BY \n"+
-            "c.categoryId, m.categoryId;")
+            "FROM DashType c \n"+
+            "Inner JOIN dashmenu m ON c.categoryId = m.categoryId \n"+
+            "ORDER BY m.menuId;")
     public List<CategoryWithMenus> getAllDashMenu();
     @Select("select * from dashmenu where categoryId = #{id}")
     public List<DashMenu> getDashMenuByType(int id);
@@ -31,6 +28,6 @@ public interface DashMenuDao{
     public Boolean addDashMenu(DashMenu dashmenu);
     @Update("update dashmenu set name = #{name}, description = #{discription}, price = #{price} where id = #{id}")
     public Boolean updateDashMenu(DashMenu item);
-    @Delete("delete from dashmenu where id = #{id}")
+    @Delete("delete from dashmenu where menuId = #{id}")
     public Boolean deleteDashMenu(Integer id);
 }

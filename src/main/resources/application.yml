@@ -6,3 +6,7 @@ spring:
     password: 12345678
 server:
   port: 9090
+files:
+  upload:
+    dashimg:
+      path: D:/projectImg/order_online/dashMenu/
