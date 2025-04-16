@@ -3,7 +3,7 @@ package com.example.order_online;
 import com.example.order_online.dao.DashMenuDao;
 import com.example.order_online.dao.AdminDao;
 import com.example.order_online.domain.Admin;
-import com.example.order_online.queryEntity.CategoryWithMenus;
+import com.example.order_online.domain.CategoryWithMenus;
 import com.example.order_online.domain.DashMenu;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ class OrderOnlineApplicationTests {
     private AdminDao adminDao;
     @Test
     void testgetbyType() {
-        List<DashMenu> item = dashMenuDao.getDashMenuByType(1);
+        List<DashMenu> item = dashMenuDao.getDashMenuByType("黄瓜",1);
         System.out.println(item);
     }
     @Test

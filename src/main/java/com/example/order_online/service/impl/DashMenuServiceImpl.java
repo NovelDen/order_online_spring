@@ -1,7 +1,7 @@
 package com.example.order_online.service.impl;
 
 import com.example.order_online.dao.DashMenuDao;
-import com.example.order_online.queryEntity.CategoryWithMenus;
+import com.example.order_online.domain.CategoryWithMenus;
 import com.example.order_online.domain.DashMenu;
 import com.example.order_online.service.DashMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +21,8 @@ public class DashMenuServiceImpl implements DashMenuService {
         return DashMenuDao.addDashMenu(dashMenu);
     }
 
-    public List<DashMenu> getDashMenuByType(int id) {
-        return DashMenuDao.getDashMenuByType(id);
+    public List<DashMenu> getDashMenuByType(String name,Integer typeId) {
+        return DashMenuDao.getDashMenuByType(name,typeId);
     }
     public boolean updateDashMenu(DashMenu dashMenu) {
         return DashMenuDao.updateDashMenu(dashMenu);

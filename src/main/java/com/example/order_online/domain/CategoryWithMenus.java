@@ -1,4 +1,4 @@
-package com.example.order_online.queryEntity;
+package com.example.order_online.domain;
 
 import lombok.Data;
 

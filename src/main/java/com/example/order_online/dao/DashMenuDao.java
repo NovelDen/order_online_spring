@@ -1,6 +1,6 @@
 package com.example.order_online.dao;
 
-import com.example.order_online.queryEntity.CategoryWithMenus;
+import com.example.order_online.domain.CategoryWithMenus;
 import com.example.order_online.domain.DashMenu;
 import org.apache.ibatis.annotations.*;
 
@@ -21,8 +21,8 @@ public interface DashMenuDao{
             "Inner JOIN dashmenu m ON c.categoryId = m.categoryId \n"+
             "ORDER BY m.menuId;")
     public List<CategoryWithMenus> getAllDashMenu();
-    @Select("select * from dashmenu where categoryId = #{id}")
-    public List<DashMenu> getDashMenuByType(int id);
+    @Select("select * from dashmenu where menuName like #{name} && categoryId = #{typeId}")
+    public List<DashMenu> getDashMenuByType(String name,Integer typeId);
 //    添加item
     @Insert("insert into dashmenu (id,name,description,price) values (#{id},#{name},#{description},#{price})")
     public Boolean addDashMenu(DashMenu dashmenu);

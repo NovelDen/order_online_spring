@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/dashmenu")
+@RequestMapping("/dashType")
 public class DashTypeController {
     @Autowired
     private DashTypeService dashTypeService;

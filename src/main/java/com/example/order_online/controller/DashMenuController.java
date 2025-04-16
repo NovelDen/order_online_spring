@@ -16,9 +16,9 @@ public class DashMenuController {
     public Result getAllDashMenu(){
         return Result.success(DashMenuService.getAllDashMenu());
     }
-    @GetMapping("/{id}")
-    public Result getDashMenuByType(@PathVariable int id){
-        return Result.success(DashMenuService.getDashMenuByType(id));
+    @PostMapping("/dash")
+    public Result getDashMenuByType(@RequestParam("name") String name,@RequestParam("type") Integer typeId){
+        return Result.success(DashMenuService.getDashMenuByType(name,typeId));
     }
     @PostMapping
     public Result addDashMenu(@RequestBody DashMenu item){
