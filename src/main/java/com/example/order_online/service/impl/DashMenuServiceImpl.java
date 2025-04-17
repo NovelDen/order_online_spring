@@ -22,7 +22,12 @@ public class DashMenuServiceImpl implements DashMenuService {
     }
 
     public List<DashMenu> getDashMenuByType(String name,Integer typeId) {
-        return DashMenuDao.getDashMenuByType(name,typeId);
+        if(typeId != null){
+            return DashMenuDao.getDashMenuByType(name,typeId);
+        }else {
+            return DashMenuDao.getDashMenuByName(name);
+        }
+
     }
     public boolean updateDashMenu(DashMenu dashMenu) {
         return DashMenuDao.updateDashMenu(dashMenu);

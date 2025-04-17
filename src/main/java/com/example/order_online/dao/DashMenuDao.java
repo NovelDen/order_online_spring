@@ -23,6 +23,8 @@ public interface DashMenuDao{
     public List<CategoryWithMenus> getAllDashMenu();
     @Select("select * from dashmenu where menuName like #{name} && categoryId = #{typeId}")
     public List<DashMenu> getDashMenuByType(String name,Integer typeId);
+    @Select("select * from dashmenu where menuName like #{name}")
+    public List<DashMenu> getDashMenuByName(String name);
 //    添加item
     @Insert("insert into dashmenu (id,name,description,price) values (#{id},#{name},#{description},#{price})")
     public Boolean addDashMenu(DashMenu dashmenu);
