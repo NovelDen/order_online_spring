@@ -10,3 +10,5 @@ files:
   upload:
     dashimg:
       path: D:/projectImg/order_online/dashMenu/
+    userimg:
+      path: D:/projectImg/order_online/userImg/

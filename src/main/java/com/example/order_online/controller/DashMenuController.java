@@ -6,6 +6,8 @@ import com.example.order_online.service.DashMenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 
 @RestController
 @RequestMapping("/dashmenu")
@@ -16,11 +18,17 @@ public class DashMenuController {
     public Result getAllDashMenu(){
         return Result.success(DashMenuService.getAllDashMenu());
     }
+    @GetMapping("/type")
+    public Result getAllDashMenuByType(){
+        return Result.success(DashMenuService.getAllDashMenuByType());
+    }
     @PostMapping("/dash")
-    public Result getDashMenuByType(@RequestParam("name") String name,@RequestParam("type") Integer typeId){
+    public Result getDashMenuByType(@RequestBody Map<String, Object> formData){
+        String name = (String) formData.get("name");
+        Integer typeId = (Integer) formData.get("type");
         return Result.success(DashMenuService.getDashMenuByType(name,typeId));
     }
-    @PostMapping
+    @PutMapping
     public Result addDashMenu(@RequestBody DashMenu item){
         if (DashMenuService.addDashMenu(item)){
             return Result.success("添加成功");
@@ -38,7 +46,7 @@ public class DashMenuController {
             return Result.error();
         }
     }
-    @PutMapping
+    @PostMapping
     public Result updateDashMenu(@RequestBody DashMenu item){
         if (DashMenuService.updateDashMenu(item)){
             return Result.success("更新成功");

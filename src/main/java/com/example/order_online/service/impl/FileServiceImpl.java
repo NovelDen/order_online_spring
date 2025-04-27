@@ -23,11 +23,11 @@ public class FileServiceImpl implements FileService {
     private String port="localhost";
 
     @Override
-    public ResponseEntity<Resource> getfile(String filename) {
+    public ResponseEntity<Resource> getfile(String filename,String path) {
         try {
             // 指定本地文件路径
-            Path path = Paths.get("D:\\projectImg\\order_online\\dashMenu\\" + filename);
-            Resource file = new UrlResource(path.toUri());
+            Path filepath = Paths.get("D:\\projectImg\\order_online\\"+path+"\\" + filename);
+            Resource file = new UrlResource(filepath.toUri());
 
             if (file.exists() || file.isReadable()) {
                 return ResponseEntity.ok()
@@ -43,7 +43,7 @@ public class FileServiceImpl implements FileService {
     }
 
     @Override
-    public String upload(MultipartFile file , String path) throws IOException {
+    public String upload(MultipartFile file , String path,String pathName) throws IOException {
         String originalFilename = file.getOriginalFilename();
         String type = FileUtil.extName(originalFilename);
 
@@ -62,7 +62,7 @@ public class FileServiceImpl implements FileService {
         // 上传文件到磁盘
         file.transferTo(uploadFile);
         // 数据库若不存在重复文件，则不删除刚才上传的文件
-        url = "http://"+port+":9090/files/dashimg/" + fileUUID;
+        url = "http://"+port+":9090/files/"+pathName+"/" + fileUUID;
         return url;
     }
 }

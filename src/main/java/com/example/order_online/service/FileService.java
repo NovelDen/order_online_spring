@@ -8,6 +8,6 @@ import java.io.IOException;
 import java.nio.file.Path;
 
 public interface FileService {
-    public ResponseEntity<Resource> getfile(String filename);
-    public String upload(MultipartFile file, String path) throws IOException;
+    public ResponseEntity<Resource> getfile(String filename,String path);
+    public String upload(MultipartFile file, String path,String pathName) throws IOException;
 }

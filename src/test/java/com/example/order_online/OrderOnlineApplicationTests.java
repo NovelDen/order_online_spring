@@ -2,9 +2,8 @@ package com.example.order_online;
 
 import com.example.order_online.dao.DashMenuDao;
 import com.example.order_online.dao.AdminDao;
-import com.example.order_online.domain.Admin;
-import com.example.order_online.domain.CategoryWithMenus;
-import com.example.order_online.domain.DashMenu;
+import com.example.order_online.dao.OrderDao;
+import com.example.order_online.domain.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -17,9 +16,11 @@ class OrderOnlineApplicationTests {
     private DashMenuDao dashMenuDao;
     @Autowired
     private AdminDao adminDao;
+    @Autowired
+    private OrderDao orderDao;
     @Test
     void testgetbyType() {
-        List<DashMenu> item = dashMenuDao.getDashMenuByType("黄瓜",1);
+        List<CategoryWithMenus> item = dashMenuDao.getDashMenuByType("黄瓜",1);
         System.out.println(item);
     }
     @Test
@@ -44,5 +45,14 @@ class OrderOnlineApplicationTests {
         Admin admin = adminDao.login("tch2333","2320653.");
         System.out.println(admin);
     }
-
+    @Test
+    void testgetOrder(){
+        List<Order> order = orderDao.getAllOrder();
+        System.out.println(order);
+    }
+    @Test
+    void testgetOrderInfo(){
+        List<OrderInfo> order = orderDao.getOrderItemsByOrderId(1);
+        System.out.println(order);
+    }
 }

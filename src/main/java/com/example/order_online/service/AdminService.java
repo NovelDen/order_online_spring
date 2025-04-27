@@ -7,4 +7,6 @@ import java.util.List;
 public interface AdminService {
     public List<Admin> getAll();
     public Admin login(String account, String password);
+    public boolean updateAdmin(Admin admin);
+    public Admin getAdminById(Integer id);
 }

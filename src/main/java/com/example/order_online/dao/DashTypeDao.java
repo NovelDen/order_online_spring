@@ -7,15 +7,15 @@ import java.util.List;
 
 @Mapper
 public interface DashTypeDao{
-    @Select("SELECT * FROM DashType ")
+    @Select("SELECT * FROM dashtype ")
     public List<DashType> getAllDashType();
-    @Select("select * from dashmenu where categoryName like #{name}")
+    @Select("select * from dashtype where categoryName LIKE CONCAT('%', #{name}, '%')")
     public List<DashType> getDashTypeByName(String name);
     //    添加item
-    @Insert("insert into dashmenu (id,name,description,price) values (#{id},#{name},#{description},#{price})")
-    public Boolean addDashType(DashType dashmenu);
-    @Update("update dashmenu set name = #{name}, description = #{discription}, price = #{price} where id = #{id}")
+    @Insert("insert into dashtype (categoryName,description) values (#{categoryName},#{description})")
+    public Boolean addDashType(DashType dashType);
+    @Update("update dashtype set categoryName = #{categoryName}, description = #{description} where categoryId = #{categoryId}")
     public Boolean updateDashType(DashType item);
-    @Delete("delete from dashmenu where menuId = #{id}")
+    @Delete("delete from dashtype where categoryId = #{id}")
     public Boolean deleteDashType(Integer id);
 }

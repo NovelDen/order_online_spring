@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/dashType")
+@RequestMapping("/dashtype")
 public class DashTypeController {
     @Autowired
     private DashTypeService dashTypeService;
@@ -19,7 +19,7 @@ public class DashTypeController {
     public Result getDashTypeByName(@PathVariable String name){
         return Result.success(dashTypeService.getDashTypeByName(name));
     }
-    @PostMapping
+    @PutMapping
     public Result addDashMenu(@RequestBody DashType item){
         if (dashTypeService.addDashType(item)){
             return Result.success("添加成功");
@@ -37,7 +37,7 @@ public class DashTypeController {
             return Result.error();
         }
     }
-    @PutMapping
+    @PostMapping
     public Result updateDashMenu(@RequestBody DashType item){
         if (dashTypeService.updateDashType(item)){
             return Result.success("更新成功");

@@ -27,15 +27,26 @@ public class AdminController {
         if (admin !=null){
             String userId = String.valueOf(admin.getId());
             String userName = String.valueOf(admin.getAccount());
+            String avatar = String.valueOf(admin.getAvatar());
             String Token = JWTutils.getToken(userId,admin.getPassword());
             Map<String, Object> data = new HashMap<>();
             data.put("userId", userId);
             data.put("userName", userName);
             data.put("token", Token);
+            data.put("avatar",avatar);
             return Result.success(data);
         }else {
             return Result.error(Constants.CODE_600,"账号或密码错误");
         }
     }
-
+    @PostMapping
+    public Result updateAdmin(@RequestBody Admin admin){
+        if (adminService.updateAdmin(admin)){
+            Admin admin1 = adminService.getAdminById(admin.getId());
+            admin1.setPassword("");
+            return Result.success(admin1);
+        }else{
+            return Result.error(Constants.CODE_600,"修改失败");
+        }
+    }
 }

@@ -28,14 +28,22 @@ public class FileController {
     private FileService fileService;
     @Value("${files.upload.dashimg.path}")
     private String dashimgUploadPath;
-
+    @Value("${files.upload.userimg.path}")
+    private String userimgUploadPath;
     @GetMapping("/dashimg/{filename}")
     public ResponseEntity<Resource> getdashimg(@PathVariable String filename) {
-        return fileService.getfile(filename);
+        return fileService.getfile(filename,"dashmenu");
     }
     @PostMapping("/dashimg")
     public Result dashimgupload(@RequestParam MultipartFile file) throws IOException {
-        String url = fileService.upload(file, dashimgUploadPath);
+        String url = fileService.upload(file, dashimgUploadPath,"dashimg");
+        return Result.success(url);
+    }
+    @GetMapping("/userimg/{filename}")
+    public ResponseEntity<Resource> getuserimg(@PathVariable String filename) {return fileService.getfile(filename,"userimg");}
+    @PostMapping("/userimg")
+    public Result userimgupload(@RequestParam MultipartFile file) throws IOException {
+        String url = fileService.upload(file, userimgUploadPath,"userimg");
         return Result.success(url);
     }
 }

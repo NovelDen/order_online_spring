@@ -17,4 +17,14 @@ public class AdminServiceImpl implements AdminService {
         Admin admin = adminDao.login(account,password);
         return admin;
     }
+    public boolean updateAdmin(Admin admin){
+        if (admin.getPassword()!=null){
+            return adminDao.updatePassword(admin);
+        }else {
+            return adminDao.updateAdmin(admin);
+        }
+    }
+    public Admin getAdminById(Integer id){
+        return adminDao.getAdminById(id);
+    }
 }
