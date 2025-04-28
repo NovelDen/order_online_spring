@@ -23,6 +23,9 @@ public class CommentServiceImpl implements CommentService {
     public List<Comment> getAllCommentByQuery(Comment comment) {
         return commentDao.getCommentByQeury(comment);
     }
+    public List<Comment> getAllCommentByQueryId(Comment comment) {
+        return commentDao.getCommentByQeuryId(comment);
+    }
     public boolean updateComment(Comment comment) {
         return commentDao.updateComment(comment);
     }

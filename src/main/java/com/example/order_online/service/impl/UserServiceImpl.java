@@ -29,7 +29,9 @@ public class UserServiceImpl implements UserService {
             return false;
         }
     }
-
+    public User getUserById(int id){
+        return UserDao.getUserById(id);
+    }
     public boolean addUser(User user) {
         if (UserDao.getUserByAccount(user.getUAccount())!=null){
             return false;

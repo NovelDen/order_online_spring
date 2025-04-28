@@ -59,6 +59,9 @@ public class UserController {
         if (user.getUName()==null || user.getUPassword()==null || user.getUAccount() == null){
             return Result.error(Constants.CODE_400,"用户名、密码、账号不能为空");
         }
+        if (user.getUAvatar()==null){
+            user.setUAvatar("https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+        }
         if (userService.addUser(user)){
             User user1 = userService.login(user.getUAccount(),user.getUPassword());
             String userId = String.valueOf(user1.getUId());
@@ -83,11 +86,30 @@ public class UserController {
     }
     @PostMapping
     public Result updateUser(@RequestBody User user){
-        if (userService.updateUser(user)){
+        User user1 = userService.getUserById(user.getUId());
+        user1.setUName(user.getUName());
+        user1.setUAvatar(user.getUAvatar());
+        if (userService.updateUser(user1)){
             return Result.success("更新成功");
         }
         else {
             return Result.error();
         }
+    }
+    @PostMapping("/password")
+    public Result updateUserPassword(@RequestBody User user,@RequestParam("oldPassword") String oldPassword){
+        User user1 = userService.getUserById(user.getUId());
+        if (user1.getUPassword().equals(oldPassword)){
+            user1.setUPassword(user.getUPassword());
+            if (userService.updateUser(user1)){
+                return Result.success("更新成功");
+            }
+            else {
+                return Result.error();
+            }
+        }else{
+            return Result.error(Constants.CODE_400,"原密码错误");
+        }
+
     }
 }

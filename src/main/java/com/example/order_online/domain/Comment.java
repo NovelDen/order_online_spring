@@ -11,10 +11,14 @@ public class Comment {
     private Integer uId;
     @JsonProperty("uName")
     private String uName;
+    @JsonProperty("uAvatar")
+    private String uAvatar;
     @JsonProperty("menuId")
     private Integer menuId;
     @JsonProperty("menuName")
     private String menuName;
+    @JsonProperty("imagePath")
+    private String imagePath;
     @JsonProperty("rating")
     private Integer rating;
     @JsonProperty("commentText")

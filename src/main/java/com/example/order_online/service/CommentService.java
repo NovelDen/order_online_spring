@@ -8,7 +8,7 @@ import java.util.List;
 public interface CommentService {
     public List<Comment> getAllComment();
     public List<Comment> getAllCommentByQuery(Comment comment);
-
+    public List<Comment> getAllCommentByQueryId(Comment comment);
     public boolean addComment(Comment comment);
     public boolean updateComment(Comment comment);
     public boolean deleteComment(int id);

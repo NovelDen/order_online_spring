@@ -16,6 +16,18 @@ public class CommentController {
     public Result getAllComment(){
         return Result.success(commentService.getAllComment());
     }
+    @GetMapping("/menu/{id}")
+    public Result getAllCommentByMenuId(@PathVariable Integer id){
+        Comment comment = new Comment();
+        comment.setMenuId(id);
+        return Result.success(commentService.getAllCommentByQueryId(comment));
+    }
+    @GetMapping("/user/{id}")
+    public Result getAllCommentByUserId(@PathVariable Integer id){
+        Comment comment = new Comment();
+        comment.setUId(id);
+        return Result.success(commentService.getAllCommentByQueryId(comment));
+    }
     @PostMapping("/query")
     public Result getAllCommentByQuery(@RequestBody Comment comment){
         return Result.success(commentService.getAllCommentByQuery(comment));
@@ -26,7 +38,7 @@ public class CommentController {
             return Result.success("添加成功");
         }
         else {
-            return Result.error(Constants.CODE_400,"账号已存在");
+            return Result.error(Constants.CODE_400,"添加失败");
         }
     }
     @DeleteMapping("/{id}")

@@ -9,6 +9,8 @@ import java.util.List;
 public interface UserDao {
     @Select("SELECT * FROM user ")
     public List<User> getAllUser();
+    @Select("SELECT * FROM user WHERE uId = #{id}")
+    public User getUserById(Integer id);
     @Select("select * from user where uAccount = #{account} and uPassword = #{password}")
     public User login(String account,String password);
     @Select("select * from user where uName like CONCAT('%', #{name}, '%')")
